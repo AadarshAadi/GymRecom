@@ -92,8 +92,8 @@ trpro = {
 
 }
 
-def gtrpo(woty, exp):
-    return trpro[woty][exp]
+def gtrpo(workout_type, experience_level):
+    return trpro[workout_type][experience_level]
 
 def agmsg(age):
     if age < 40:
@@ -360,19 +360,19 @@ wte = {
     ]
 }
 
-def ssplit(woty, days):
-    return wosplit[woty][days]
+def ssplit(workout_type, days):
+    return wosplit[workout_type][days]
 
 
 def excoun(
         workout_duration,
-        woty,
-        exp
+        workout_type,
+        experience_level
 ):
 
     profile = gtrpo(
-        woty,
-        exp
+        workout_type,
+        experience_level
     )
 
     total_seconds = workout_duration * 60
@@ -417,12 +417,12 @@ def excoun(
 
     return max(3, exercise_count)
 
-def get_allowed_levels(exp):
-    if exp == "Beginner":
+def get_allowed_levels(experience_level):
+    if experience_level == "Beginner":
         return ["Beginner"]
-    elif exp == "Intermediate":
+    elif experience_level == "Intermediate":
         return ["Beginner", "Intermediate"]
-    elif exp == "Advanced":
+    elif experience_level == "Advanced":
         return ["Beginner", "Intermediate", "Expert"]
 
 
@@ -456,17 +456,17 @@ def get_injury_blocked_words(injury):
 def select_exercises_from_dataset(
     day_muscles,
     df,
-    woty,
+    workout_type,
     day_number,
-    exp,
-    aequip,
+    experience_level,
+    available_equipment,
     injury,
     exercise_count
 ):
     selected_exercises = []
     profile = gtrpo(
-    woty,
-    exp
+    workout_type,
+    experience_level
 )
 
     base_blocked_words = [
@@ -497,7 +497,7 @@ def select_exercises_from_dataset(
     injury_blocked_words = get_injury_blocked_words(injury)
     blocked_words = base_blocked_words + injury_blocked_words
 
-    allowed_levels = get_allowed_levels(exp)
+    allowed_levels = get_allowed_levels(experience_level)
 
     for muscle in day_muscles:
         matching_exercises = df[df["BodyPart"] == muscle]
@@ -507,7 +507,7 @@ def select_exercises_from_dataset(
         ]
 
         matching_exercises = matching_exercises[
-            matching_exercises["Equipment"].isin(aequip)
+            matching_exercises["Equipment"].isin(available_equipment)
         ]
 
         safe_matches = matching_exercises[
@@ -545,7 +545,7 @@ def select_exercises_from_dataset(
         ]
 
         matching_exercises = matching_exercises[
-            matching_exercises["Equipment"].isin(aequip)
+            matching_exercises["Equipment"].isin(available_equipment)
         ]
 
         safe_matches = matching_exercises[
@@ -588,9 +588,9 @@ def build_weekly_plan_from_dataset(
     split,
     selected_muscle_groups,
     df,
-    woty,
-    exp,
-    aequip,
+    workout_type,
+    experience_level,
+    available_equipment,
     injury,
     exercise_count
 ):
@@ -606,10 +606,10 @@ def build_weekly_plan_from_dataset(
             exercises = select_exercises_from_dataset(
                 muscles,
                 df,
-                woty,
+                workout_type,
                 day_number,
-                exp,
-                aequip,
+                experience_level,
+                available_equipment,
                 injury,
                 exercise_count
             )
@@ -619,21 +619,21 @@ def build_weekly_plan_from_dataset(
     return weekly_plan
 
 def generate_workout(
-    woty,
+    workout_type,
     days,
     age,
     duration,
-    exp,
-    aequip,
+    experience_level,
+    available_equipment,
     injury
 ):
 
-    split = ssplit(woty, days)
+    split = ssplit(workout_type, days)
 
     exercise_count = excoun(
         duration,
-        woty,
-        exp
+        workout_type,
+        experience_level
     )
 
     age_note = agmsg(age)
@@ -644,9 +644,9 @@ def generate_workout(
         split,
         selected_muscle_groups,
         df,
-        woty,
-        exp,
-        aequip,
+        workout_type,
+        experience_level,
+        available_equipment,
         injury,
         exercise_count
     )

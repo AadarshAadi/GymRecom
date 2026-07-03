@@ -26,12 +26,12 @@ def home():
 def recommend(request: WR):
 
     result = generate_workout(
-        woty=request.woty,
+        workout_type=request.workout_type,
         days=request.days,
         age=request.age,
         duration=request.duration,
-        exp=request.exp,
-        aequip=request.aequip,
+        experience_level=request.experience_level,
+        available_equipment=request.available_equipment,
         injury=request.injury
     )
 

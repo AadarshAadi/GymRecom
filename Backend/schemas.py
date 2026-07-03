@@ -1,10 +1,10 @@
 from pydantic import BaseModel
 from typing import List
 class WR(BaseModel):
-    woty: str
+    workout_type: str
     days: int
     age: int
     duration: int
-    exp: str
-    aequip: List[str]
+    experience_level: str
+    available_equipment: List[str]
     injury: str
