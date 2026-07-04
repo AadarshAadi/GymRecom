@@ -15,7 +15,7 @@ wosplit = {
     },
     "Strength": {
         2: "Full Body Strength",
-        3: "Full Body Strength",
+        3: "Full Body Strength*3",
         4: "Upper Lower Strength",
         5: "Strength + Accessories",
         6: "Strength PPL"
@@ -198,6 +198,15 @@ mgs = {
             "Abdominals"
         ]
     },
+    "Full Body Strength*3": {
+        "Full Body Day": [
+            "Chest",
+            "Lats",
+            "Quadriceps",
+            "Hamstrings",
+            "Shoulders"
+        ]
+    },
 
     "Full Body Strength": {
         "Full Body Day": [
@@ -318,13 +327,22 @@ wte = {
         "Leg Day",
         "Rest"
     ],
+    "Full Body Strength*3": [
+        "Full Body Day",
+        "Rest",
+        "Full Body Day",
+        "Rest",
+        "Full Body Day",
+        "Rest",
+        "Rest"
+    ],
 
     "Full Body Strength": [
         "Full Body Day",
         "Rest",
-        "Full Body Day",
         "Rest",
         "Full Body Day",
+        "Rest",
         "Rest",
         "Rest"
     ],
