@@ -52,6 +52,7 @@ function WorkoutForm({ onSubmit }) {
     };
 
     return (
+        <div className= "form-card">
         <form onSubmit={handleSubmit}>
 
             <h2>Workout Details</h2>
@@ -147,6 +148,7 @@ function WorkoutForm({ onSubmit }) {
             </button>
 
         </form>
+            </div>
     );
 }
 

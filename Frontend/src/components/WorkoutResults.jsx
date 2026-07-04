@@ -1,7 +1,7 @@
 function WorkoutResults({ result }) {
     if (!result) return null;
     return (
-        <div className="results">
+        <div className="results-card">
             <div className="summary">
 
                 <h2>Workout Recommendation</h2>
