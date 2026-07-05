@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from engine import load_dataset
 from engine import generate_workout
 from schemas import WR
 app = FastAPI(
@@ -13,8 +14,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
+@app.on_event("startup")
+def startup():
+    load_dataset()
 @app.get("/")
 def home():
     return {

@@ -1,10 +1,29 @@
 import pandas as pd
 from pathlib import Path
-BASE_DIR = Path(__file__).resolve().parent
-DATASET_PATH = BASE_DIR / "cleaneddataset.csv"
+import time
+from sqlalchemy import create_engine
 
-df = pd.read_csv(DATASET_PATH)
+engine = create_engine(
+    "mysql+pymysql://workoutuser:workoutpass@mysql:3306/workoutdb"
+)
 
+df = None
+def load_dataset():
+    global df
+
+    for _ in range(20):
+        try:
+            df = pd.read_sql(
+                "SELECT * FROM exercises",
+                engine
+            )
+            print("Database loaded successfully.")
+            return
+        except Exception:
+            print("Waiting for MySQL...")
+            time.sleep(2)
+
+    raise RuntimeError("Could not connect to MySQL.")
 wosplit = {
     "Hypertrophy": {
         2: "Full Body",
