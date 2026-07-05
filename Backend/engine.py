@@ -2,15 +2,12 @@ import pandas as pd
 from pathlib import Path
 import time
 from sqlalchemy import create_engine
-
 engine = create_engine(
     "mysql+pymysql://workoutuser:workoutpass@mysql:3306/workoutdb"
 )
-
 df = None
-def load_dataset():
+def datalload():
     global df
-
     for _ in range(20):
         try:
             df = pd.read_sql(
@@ -22,7 +19,6 @@ def load_dataset():
         except Exception:
             print("Waiting for MySQL...")
             time.sleep(2)
-
     raise RuntimeError("Could not connect to MySQL.")
 wosplit = {
     "Hypertrophy": {
@@ -41,9 +37,7 @@ wosplit = {
     }
 }
 trpro = {
-
     "Hypertrophy": {
-
         "Beginner": {
             "sets": 3,
             "rep_range": "10-12",
@@ -53,7 +47,6 @@ trpro = {
             "cooldown": 5,
             "transition": 30
         },
-
         "Intermediate": {
             "sets": 4,
             "rep_range": "8-12",
@@ -63,7 +56,6 @@ trpro = {
             "cooldown": 5,
             "transition": 30
         },
-
         "Advanced": {
             "sets": 4,
             "rep_range": "6-12",
@@ -74,10 +66,7 @@ trpro = {
             "transition": 45
         }
     },
-
-
     "Strength": {
-
         "Beginner": {
             "sets": 4,
             "rep_range": "5-6",
@@ -87,7 +76,6 @@ trpro = {
             "cooldown": 5,
             "transition": 45
         },
-
         "Intermediate": {
             "sets": 5,
             "rep_range": "3-5",
@@ -97,7 +85,6 @@ trpro = {
             "cooldown": 5,
             "transition": 60
         },
-
         "Advanced": {
             "sets": 5,
             "rep_range": "1-5",
@@ -108,12 +95,9 @@ trpro = {
             "transition": 60
         }
     }
-
 }
-
-def gtrpo(workout_type, experience_level):
-    return trpro[workout_type][experience_level]
-
+def gtrpo(workcat, exper):
+    return trpro[workcat][exper]
 def agmsg(age):
     if age < 40:
         return "Normal workout volume is suitable."
@@ -121,7 +105,6 @@ def agmsg(age):
         return "Use slightly reduced accessory volume and include a longer warm-up."
     else:
         return "Use lower volume, more recovery, and mobility work."
-
 mgs = {
     "Full Body": {
         "Full Body Day": [
@@ -133,7 +116,6 @@ mgs = {
             "Abdominals"
         ]
     },
-
     "Push Pull Legs": {
         "Push Day": [
             "Chest",
@@ -153,7 +135,6 @@ mgs = {
             "Abdominals"
         ]
     },
-
     "Upper Lower": {
         "Upper Day": [
             "Chest",
@@ -170,7 +151,6 @@ mgs = {
             "Abdominals"
         ]
     },
-
     "Bro Split": {
         "Chest Day": [
             "Chest",
@@ -197,7 +177,6 @@ mgs = {
             "Forearms"
         ]
     },
-
     "Push Pull Legs x2": {
         "Push Day": [
             "Chest",
@@ -226,7 +205,6 @@ mgs = {
             "Shoulders"
         ]
     },
-
     "Full Body Strength": {
         "Full Body Day": [
             "Chest",
@@ -236,7 +214,6 @@ mgs = {
             "Shoulders"
         ]
     },
-
     "Upper Lower Strength": {
         "Upper Day": [
             "Chest",
@@ -253,7 +230,6 @@ mgs = {
             "Abdominals"
         ]
     },
-
     "Strength + Accessories": {
         "Upper Strength Day": [
             "Chest",
@@ -274,7 +250,6 @@ mgs = {
             "Forearms"
         ]
     },
-
     "Strength PPL": {
         "Push Day": [
             "Chest",
@@ -295,7 +270,6 @@ mgs = {
         ]
     }
 }
-
 wte = {
     "Full Body": [
         "Full Body Day",
@@ -306,7 +280,6 @@ wte = {
         "Rest",
         "Rest"
     ],
-
     "Push Pull Legs": [
         "Push Day",
         "Pull Day",
@@ -316,7 +289,6 @@ wte = {
         "Rest",
         "Rest"
     ],
-
     "Upper Lower": [
         "Upper Day",
         "Lower Day",
@@ -326,7 +298,6 @@ wte = {
         "Rest",
         "Rest"
     ],
-
     "Bro Split": [
         "Chest Day",
         "Back Day",
@@ -336,7 +307,6 @@ wte = {
         "Rest",
         "Rest"
     ],
-
     "Push Pull Legs x2": [
         "Push Day",
         "Pull Day",
@@ -355,7 +325,6 @@ wte = {
         "Rest",
         "Rest"
     ],
-
     "Full Body Strength": [
         "Full Body Day",
         "Rest",
@@ -365,7 +334,6 @@ wte = {
         "Rest",
         "Rest"
     ],
-
     "Upper Lower Strength": [
         "Upper Day",
         "Lower Day",
@@ -375,7 +343,6 @@ wte = {
         "Rest",
         "Rest"
     ],
-
     "Strength + Accessories": [
         "Upper Strength Day",
         "Lower Strength Day",
@@ -385,7 +352,6 @@ wte = {
         "Accessory Day",
         "Rest"
     ],
-
     "Strength PPL": [
         "Push Day",
         "Pull Day",
@@ -396,75 +362,59 @@ wte = {
         "Rest"
     ]
 }
-
-def ssplit(workout_type, days):
-    return wosplit[workout_type][days]
-
-
+def ssplit(workcat, days):
+    return wosplit[workcat][days]
 def excoun(
-        workout_duration,
-        workout_type,
-        experience_level
+        wortime,
+        workcat,
+        exper
 ):
-
     profile = gtrpo(
-        workout_type,
-        experience_level
+        workcat,
+        exper
     )
+    tottime = wortime * 60
 
-    total_seconds = workout_duration * 60
-
-    reserved_seconds = (
+    revtime = (
         profile["warmup"] * 60 +
         profile["cooldown"] * 60
     )
-
-    available_seconds = total_seconds - reserved_seconds
-
+    availtime = tottime - revtime
     average_reps = sum(
         map(
             int,
             profile["rep_range"].split("-")
         )
     ) / 2
-
-    active_time = (
+    atime = (
         profile["sets"] *
         average_reps *
         profile["time_per_rep"]
     )
-
-    resting_time = (
+    rtime = (
         (profile["sets"] - 1) *
         profile["rest"]
     )
-
-    transition_time = profile["transition"]
-
-    seconds_per_exercise = (
-        active_time +
-        resting_time +
-        transition_time
+    ttime = profile["transition"]
+    ssexec = (
+        atime +
+        rtime +
+        ttime
     )
-
-    exercise_count = int(
-        available_seconds //
-        seconds_per_exercise
+    execount = int(
+        availtime //
+        ssexec
     )
-
-    return max(3, exercise_count)
-
-def get_allowed_levels(experience_level):
-    if experience_level == "Beginner":
+    return max(3, execount)
+def ale(exper):
+    if exper == "Beginner":
         return ["Beginner"]
-    elif experience_level == "Intermediate":
+    elif exper == "Intermediate":
         return ["Beginner", "Intermediate"]
-    elif experience_level == "Advanced":
+    elif exper == "Advanced":
         return ["Beginner", "Intermediate", "Expert"]
-
-
-def get_injury_blocked_words(injury):
-    injury_rules = {
+def inbo(injury):
+    iirul = {
         "None": [],
         "Knee Pain": [
             "jump",
@@ -487,26 +437,15 @@ def get_injury_blocked_words(injury):
             "upright row"
         ]
     }
-
-    return injury_rules.get(injury, [])
-
-def select_exercises_from_dataset(
-    day_muscles,
-    df,
-    workout_type,
-    day_number,
-    experience_level,
-    available_equipment,
-    injury,
-    exercise_count
-):
-    selected_exercises = []
+    return iirul.get(injury, [])
+def seda(daymusc,df,workcat,daynum,exper,equipm,injury,execount):
+    sexecs = []
     profile = gtrpo(
-    workout_type,
-    experience_level
+    workcat,
+    exper
 )
 
-    base_blocked_words = [
+    bbwo = [
         "clean",
         "snatch",
         "jerk",
@@ -531,36 +470,36 @@ def select_exercises_from_dataset(
         "Push-Up"
     ]
 
-    injury_blocked_words = get_injury_blocked_words(injury)
-    blocked_words = base_blocked_words + injury_blocked_words
+    jinbb = inbo(injury)
+    bbwords = bbwo + jinbb
 
-    allowed_levels = get_allowed_levels(experience_level)
+    alllevels = ale(exper)
 
-    for muscle in day_muscles:
-        matching_exercises = df[df["BodyPart"] == muscle]
+    for muscle in daymusc:
+        mex = df[df["BodyPart"] == muscle]
 
-        matching_exercises = matching_exercises[
-            matching_exercises["Level"].isin(allowed_levels)
+        mex = mex[
+            mex["Level"].isin(alllevels)
         ]
 
-        matching_exercises = matching_exercises[
-            matching_exercises["Equipment"].isin(available_equipment)
+        mex = mex[
+            mex["Equipment"].isin(equipm)
         ]
 
-        safe_matches = matching_exercises[
-            ~matching_exercises["Title"].str.lower().str.contains(
-                "|".join(blocked_words),
+        goodmatch = mex[
+            ~mex["Title"].str.lower().str.contains(
+                "|".join(bbwords),
                 na=False
             )
         ]
 
-        if len(safe_matches) == 0:
+        if len(goodmatch) == 0:
             continue
 
-        exercise_index = day_number % len(safe_matches)
-        exercise = safe_matches.iloc[exercise_index]
+        exeid = daynum % len(goodmatch)
+        exercise = goodmatch.iloc[exeid]
 
-        selected_exercises.append({
+        sexecs.append({
             "Exercise": exercise["Title"],
             "Muscle": muscle,
             "Equipment": exercise["Equipment"],
@@ -570,41 +509,41 @@ def select_exercises_from_dataset(
             "Rest": f'{profile["rest"]} sec'
         })
 
-    extra_index = 0
+    exindex = 0
 
-    while len(selected_exercises) < exercise_count:
-        muscle = day_muscles[extra_index % len(day_muscles)]
+    while len(sexecs) < execount:
+        muscle = daymusc[exindex % len(daymusc)]
 
-        matching_exercises = df[df["BodyPart"] == muscle]
+        mex = df[df["BodyPart"] == muscle]
 
-        matching_exercises = matching_exercises[
-            matching_exercises["Level"].isin(allowed_levels)
+        mex = mex[
+            mex["Level"].isin(alllevels)
         ]
 
-        matching_exercises = matching_exercises[
-            matching_exercises["Equipment"].isin(available_equipment)
+        mex = mex[
+            mex["Equipment"].isin(equipm)
         ]
 
-        safe_matches = matching_exercises[
-            ~matching_exercises["Title"].str.lower().str.contains(
-                "|".join(blocked_words),
+        goodmatch = mex[
+            ~mex["Title"].str.lower().str.contains(
+                "|".join(bbwords),
                 na=False
             )
         ]
 
-        if len(safe_matches) > 0:
-            exercise_index = (day_number + extra_index + 1) % len(safe_matches)
-            exercise = safe_matches.iloc[exercise_index]
+        if len(goodmatch) > 0:
+            exeid = (daynum + exindex + 1) % len(goodmatch)
+            exercise = goodmatch.iloc[exeid]
 
-            exercise_name = exercise["Title"]
+            exename = exercise["Title"]
 
-            already_selected = False
-            for selected in selected_exercises:
-                if selected["Exercise"] == exercise_name:
-                    already_selected = True
+            ase = False
+            for selected in sexecs:
+                if selected["Exercise"] == exename:
+                    ase = True
 
-            if not already_selected:
-                selected_exercises.append({
+            if not ase:
+                sexecs.append({
                     "Exercise": exercise["Title"],
                     "Muscle": muscle,
                     "Equipment": exercise["Equipment"],
@@ -614,83 +553,60 @@ def select_exercises_from_dataset(
                     "Rest": f'{profile["rest"]} sec'
                 })
 
-        extra_index += 1
+        exindex += 1
 
-        if extra_index > 50:
+        if exindex > 50:
             break
 
-    return selected_exercises[:exercise_count]
+    return sexecs[:execount]
 
-def build_weekly_plan_from_dataset(
-    split,
-    selected_muscle_groups,
-    df,
-    workout_type,
-    experience_level,
-    available_equipment,
-    injury,
-    exercise_count
-):
-    weekly_plan = {}
+def bwe(split,semuscles,df,workcat,exper,equipm,injury,execount):
+    gymplan = {}
     template = wte[split]
-
-    for day_number, day_type in enumerate(template, start=1):
+    for daynum, day_type in enumerate(template, start=1):
         if day_type == "Rest":
-            weekly_plan[f"Day {day_number}"] = "Rest"
+            gymplan[f"Day {daynum}"] = "Rest"
         else:
-            muscles = selected_muscle_groups[day_type]
-
-            exercises = select_exercises_from_dataset(
+            muscles = semuscles[day_type]
+            exercises = seda(
                 muscles,
                 df,
-                workout_type,
-                day_number,
-                experience_level,
-                available_equipment,
+                workcat,
+                daynum,
+                exper,
+                equipm,
                 injury,
-                exercise_count
+                execount
             )
+            gymplan[f"Day {daynum} - {day_type}"] = exercises
+    return gymplan
+def genwork(workcat,days,age,duration,exper,equipm,injury):
+    split = ssplit(workcat, days)
 
-            weekly_plan[f"Day {day_number} - {day_type}"] = exercises
-
-    return weekly_plan
-
-def generate_workout(
-    workout_type,
-    days,
-    age,
-    duration,
-    experience_level,
-    available_equipment,
-    injury
-):
-
-    split = ssplit(workout_type, days)
-
-    exercise_count = excoun(
+    execount = excoun(
         duration,
-        workout_type,
-        experience_level
+        workcat,
+        exper
     )
 
     age_note = agmsg(age)
 
-    selected_muscle_groups = mgs[split]
+    semuscles = mgs[split]
 
-    weekly_plan = build_weekly_plan_from_dataset(
+    gymplan = bwe(
         split,
-        selected_muscle_groups,
+        semuscles,
         df,
-        workout_type,
-        experience_level,
-        available_equipment,
+        workcat,
+        exper,
+        equipm,
         injury,
-        exercise_count
+        execount
     )
 
     return {
         "split": split,
-        "exercise_count": exercise_count,
+        "execount": execount,
         "age_note": age_note,
-        "weekly_plan": weekly_plan
+        "gymplan": gymplan
     }

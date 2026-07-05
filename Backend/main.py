@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from engine import load_dataset
-from engine import generate_workout
+from engine import datalload
+from engine import genwork
 from schemas import WR
 app = FastAPI(
     title="Workout Recommendation API",
@@ -16,25 +16,21 @@ app.add_middleware(
 )
 @app.on_event("startup")
 def startup():
-    load_dataset()
+    datalload()
 @app.get("/")
 def home():
     return {
         "message": "Workout Recommendation API Running"
     }
-
-
 @app.post("/recommend")
 def recommend(request: WR):
-
-    result = generate_workout(
-        workout_type=request.workout_type,
+    result = genwork(
+        workcat=request.workcat,
         days=request.days,
         age=request.age,
         duration=request.duration,
-        experience_level=request.experience_level,
-        available_equipment=request.available_equipment,
+        exper=request.exper,
+        equipm=request.equipm,
         injury=request.injury
     )
-
     return result
