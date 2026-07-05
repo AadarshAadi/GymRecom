@@ -29,24 +29,40 @@ function App() {
         }
 
     };
+    const goBack = () => {
 
-    return (
+    setResult(null);
 
-        <div className="container">
+};
 
-            <h1>Workout Recommendation System</h1>
+return (
+    <div className="app-background">
 
-            <WorkoutForm
-                onSubmit={generateWorkout}
-            />
+        <div
+    className={`main-card ${result ? "results-mode" : "form-mode"}`}
+>
 
-            <WorkoutResults
-                result={result}
-            />
+<h1>Workout Recommendation System</h1>
+
+{!result ? (
+
+    <WorkoutForm
+        onSubmit={generateWorkout}
+    />
+
+) : (
+
+    <WorkoutResults
+        result={result}
+        onBack={goBack}
+    />
+
+)}
 
         </div>
 
-    );
+    </div>
+);
 
 }
 

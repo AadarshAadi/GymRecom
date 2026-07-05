@@ -1,7 +1,13 @@
-function WorkoutResults({ result }) {
+function WorkoutResults({ result,onBack }) {
     if (!result) return null;
     return (
         <div className="results-card">
+    <button
+        className="back-button"
+        onClick={onBack}
+    >
+        ←
+    </button>
             <div className="summary">
 
                 <h2>Workout Recommendation</h2>
@@ -27,7 +33,7 @@ function WorkoutResults({ result }) {
             </div>
 
             <hr />
-
+            <div className="days-grid">
             {Object.entries(result.weekly_plan).map(([day, plan]) => (
 
                 <div
@@ -95,6 +101,7 @@ function WorkoutResults({ result }) {
                 </div>
 
             ))}
+            </div>
 
         </div>
 
