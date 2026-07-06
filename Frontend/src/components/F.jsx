@@ -28,7 +28,7 @@ function F({ onSubmit }) {
   return (
     <div className="form-card">
       <form onSubmit={submitfo}>
-        <h2>Workout Details</h2>
+        <h2>Workout Restrictions</h2>
 
         <label>Workout Goal</label>
         <select name="workcat" value={formData.workcat} onChange={hanchang}>
