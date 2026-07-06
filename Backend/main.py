@@ -4,7 +4,7 @@ from engine import datalload
 from engine import genwork
 from schemas import WR
 app = FastAPI(
-    title="Workout Recommendation API",
+    title="EngineAPI",
     version="1.0.0"
 )
 app.add_middleware(

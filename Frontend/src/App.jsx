@@ -22,7 +22,7 @@ function App() {
 return (
     <div className="app-background">
         <div className={`main-card ${result ? "results-mode" : "form-mode"}`}>
-    <h1>Workout Recommendation System</h1>
+    <h1>Gym Plan Recommendation</h1>
     {!result ? (
         <F onSubmit={genwork}/>
     ) : (
