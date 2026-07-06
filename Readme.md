@@ -63,7 +63,6 @@ Based on these inputs, the application recommends an optimized workout routine u
 ## DevOps
 
 * Docker
-* Docker Compose
 
 ---
 
@@ -102,6 +101,12 @@ GymRecom/
 │
 ├── Frontend/
 │   ├── src/
+│   │     ├── assets/
+│   │     ├── components/
+│   │     │        ├──F.jsx
+│   │     │        └──R.jsx
+│   │     ├── App.jsx
+│   │     └── main.jsx
 │   ├── public/
 │   ├── Dockerfile
 │   ├── package.json

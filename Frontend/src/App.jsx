@@ -1,15 +1,10 @@
-/**
- * Main application component that manages workout generation
- * and displays either the form or the generated workout plan.
- */
+import { useState } from "react";
+import F from "./components/F";
+import R from "./components/R";
+import api from "./services/api";
+import "./styles/App.css";
 function App() {
     const [result, setResult] = useState(null);
-
-    /**
-     * Sends the workout request to the backend API.
-     *
-     * @param {Object} formData - User workout preferences.
-     */
     const genwork = async (formData) => {
         try {
             const response = await api.post(
@@ -22,7 +17,6 @@ function App() {
             console.error(error);
         }
     };
-
     /**
      * Returns the user to the workout input form.
      */

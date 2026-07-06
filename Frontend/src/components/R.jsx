@@ -1,3 +1,20 @@
+/**
+ * Displays the generated workout recommendation and exercise plan.
+ *
+ * Shows the recommended workout split, exercise count, age recommendation,
+ * and a day-by-day workout schedule. If no workout result is provided,
+ * the component renders nothing.
+ *
+ * @param {Object} props - Component props.
+ * @param {Object|null} props.result - Generated workout plan and summary.
+ * @param {string} props.result.split - Recommended workout split.
+ * @param {number} props.result.execount - Number of exercises per workout day.
+ * @param {string} props.result.age_note - Age-specific recommendation.
+ * @param {Object.<string, Array<Object>|string>} props.result.gymplan - Workout plan keyed by day. Each value is either `"Rest"` or an array of exercise objects.
+ * @param {Function} props.onBack - Callback invoked when the back button is clicked.
+ *
+ * @returns {JSX.Element|null} The workout recommendation view, or `null` if no result is available.
+ */
 function R({ result, onBack }) {
   if (!result) return null;
   return (
