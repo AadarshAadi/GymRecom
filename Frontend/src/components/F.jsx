@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import Select from "react-select";
 function F({ onSubmit }) {
   const [formData, setFormData] = useState({
     workcat: "Strength",
@@ -10,21 +10,16 @@ function F({ onSubmit }) {
     equipm: ["Dumbbell", "Machine"],
     injury: "None"
   });
-
+  const equipmentOptions = [
+  { value: "Dumbbell", label: "Dumbbell" },
+  { value: "Machine", label: "Machine" },
+  { value: "Cable", label: "Cable" },
+  { value: "Body Only", label: "Body Only" },
+  ];
   const hanchang = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
-  const equichange = (e) => {
-    const { value, checked } = e.target;
-    const upequip = checked
-      ? [...formData.equipm, value]
-      : formData.equipm.filter((item) => item !== value);
-
-    setFormData({ ...formData, equipm: upequip });
-  };
-
   const submitfo = (e) => {
     e.preventDefault();
     onSubmit(formData);
@@ -56,19 +51,58 @@ function F({ onSubmit }) {
           <option>Intermediate</option>
           <option>Advanced</option>
         </select>
-
         <label>Available Equipment</label>
-        {["Dumbbell", "Machine", "Cable", "Body Only"].map((equipment) => (
-          <div key={equipment}>
-            <input
-              type="checkbox"
-              value={equipment}
-              checked={formData.equipm.includes(equipment)}
-              onChange={equichange}
-            />
-            {equipment}
-          </div>
-        ))}
+
+        <Select
+          isMulti
+          options={equipmentOptions}
+          placeholder="Select equipment..."
+          value={equipmentOptions.filter(option =>
+            formData.equipm.includes(option.value)
+          )}
+          onChange={(selected) =>
+            setFormData({
+              ...formData,
+              equipm: selected ? selected.map(item => item.value) : [],
+            })
+          }
+          styles={{
+            control: (base) => ({
+              ...base,
+              minHeight: "50px",
+              borderRadius: "12px",
+              borderColor: "#d1d5db",
+              boxShadow: "none",
+              "&:hover": {
+                borderColor: "#6366f1",
+              },
+            }),
+            multiValue: (base) => ({
+              ...base,
+              backgroundColor: "#6366f1",
+              borderRadius: "8px",
+            }),
+            multiValueLabel: (base) => ({
+              ...base,
+              color: "white",
+              fontWeight: 500,
+            }),
+            multiValueRemove: (base) => ({
+              ...base,
+              color: "white",
+              ":hover": {
+                backgroundColor: "#4f46e5",
+                color: "white",
+              },
+            }),
+            option: (base, state) => ({
+              ...base,
+              backgroundColor: state.isFocused ? "#eef2ff" : "white",
+              color: "#111827",
+              cursor: "pointer",
+            }),
+          }}
+        />
 
         <label>Injury</label>
         <select name="injury" value={formData.injury} onChange={hanchang}>
