@@ -2,10 +2,14 @@ import pandas as pd
 from pathlib import Path
 import time
 from sqlalchemy import create_engine
+
+""" Connection to MySQL database using SQLAlchemy and PyMySQL."""
 engine = create_engine(
     "mysql+pymysql://workoutuser:workoutpass@mysql:3306/workoutdb"
 )
 df = None
+
+""" Load exercise data from the MySQL database."""
 def datalload():
     global df
     for _ in range(20):
@@ -20,6 +24,8 @@ def datalload():
             print("Waiting for MySQL...")
             time.sleep(2)
     raise RuntimeError("Could not connect to MySQL.")
+
+"""Workout Split"""
 wosplit = {
     "Hypertrophy": {
         2: "Full Body",
@@ -36,6 +42,8 @@ wosplit = {
         6: "Strength PPL"
     }
 }
+
+"""Training Profiles"""
 trpro = {
     "Hypertrophy": {
         "Beginner": {
@@ -96,8 +104,12 @@ trpro = {
         }
     }
 }
+
+""" Training profile based on workout category and experience level."""
 def gtrpo(workcat, exper):
     return trpro[workcat][exper]
+
+""" Age-based guidance for workout volume and recovery recommendations. """
 def agmsg(age):
     if age < 40:
         return "Normal workout volume is suitable."
@@ -105,6 +117,8 @@ def agmsg(age):
         return "Use slightly reduced accessory volume and include a longer warm-up."
     else:
         return "Use lower volume, more recovery, and mobility work."
+    
+""" Muscle groups assigned for each workout split."""
 mgs = {
     "Full Body": {
         "Full Body Day": [
@@ -270,6 +284,8 @@ mgs = {
         ]
     }
 }
+
+""" Weekly workout schedule templates."""
 wte = {
     "Full Body": [
         "Full Body Day",
@@ -362,8 +378,11 @@ wte = {
         "Rest"
     ]
 }
+""" Get workout split based on category and training days."""
 def ssplit(workcat, days):
     return wosplit[workcat][days]
+
+""" Calculate the recommended number of exercises per workout."""
 def excoun(
         wortime,
         workcat,
@@ -406,6 +425,8 @@ def excoun(
         ssexec
     )
     return max(3, execount)
+
+""" Allowed exercise levels for the selected experience."""
 def ale(exper):
     if exper == "Beginner":
         return ["Beginner"]
@@ -413,6 +434,8 @@ def ale(exper):
         return ["Beginner", "Intermediate"]
     elif exper == "Advanced":
         return ["Beginner", "Intermediate", "Expert"]
+    
+""" Injury-specific exercise restrictions."""
 def inbo(injury):
     iirul = {
         "None": [],
@@ -438,6 +461,8 @@ def inbo(injury):
         ]
     }
     return iirul.get(injury, [])
+
+""" Select exercises for a workout day based on user preferences."""
 def seda(daymusc,df,workcat,daynum,exper,equipm,injury,execount):
     sexecs = []
     profile = gtrpo(
@@ -560,6 +585,7 @@ def seda(daymusc,df,workcat,daynum,exper,equipm,injury,execount):
 
     return sexecs[:execount]
 
+""" Build the complete weekly workout plan."""
 def bwe(split,semuscles,df,workcat,exper,equipm,injury,execount):
     gymplan = {}
     template = wte[split]
@@ -580,6 +606,8 @@ def bwe(split,semuscles,df,workcat,exper,equipm,injury,execount):
             )
             gymplan[f"Day {daynum} - {day_type}"] = exercises
     return gymplan
+
+""" Generate a personalized workout plan."""
 def genwork(workcat,days,age,duration,exper,equipm,injury):
     split = ssplit(workcat, days)
 

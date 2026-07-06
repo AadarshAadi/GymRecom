@@ -1,4 +1,4 @@
-# 🏋️ GymRecom - AI Powered Gym Workout Recommendation System
+# 🏋️ Gymy
 
 ![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green.svg)
@@ -9,7 +9,7 @@
 
 # 📖 Project Overview
 
-GymRecom is a **Workout Recommendation System** that generates personalized gym workout plans based on a user's profile and preferences.
+Gymy is a **Workout Recommendation System** that generates personalized gym workout plans based on a user's profile and preferences.
 
 Users provide information such as:
 
@@ -274,7 +274,7 @@ The initialization script creates:
 The recommendation engine considers factors such as:
 
 * Age
-* Gender
+* Workout Duration
 * Experience Level
 * Fitness Goal
 * Workout Frequency
@@ -282,42 +282,6 @@ The recommendation engine considers factors such as:
 * Injury Information
 
 These inputs help generate recommendations that are more relevant than generic workout plans.
-
----
-
-## Workout Recommendation
-
-```
-POST /recommend
-```
-
-Example Request
-
-```json
-{
-  "age": 23,
-  "gender": "Male",
-  "goal": "Muscle Gain",
-  "experience": "Intermediate",
-  "days_per_week": 5,
-  "equipment": "Gym",
-  "injury": "None"
-}
-```
-
-Example Response
-
-```json
-{
-  "recommendations": [
-    {
-      "exercise": "Bench Press",
-      "sets": 4,
-      "reps": "8-10"
-    }
-  ]
-}
-```
 
 ---
 
@@ -373,21 +337,6 @@ Niharika Pandit from Kaggle:
 ![Results Screenshot](Screenshots/3.png)
 ---
 
-# Future Improvements
-
-* User authentication
-* Save workout history
-* Progress tracking
-* AI-powered recommendations
-* Exercise videos
-* Nutrition recommendations
-* BMI and calorie calculator
-* Cloud deployment
-* Mobile application
-* Machine Learning recommendation model
-
----
-
 # Troubleshooting
 
 ## Docker won't start
@@ -434,8 +383,6 @@ https://github.com/AadarshAadi
 
 # Acknowledgements
 
-This project was developed as part of a recruitment assessment.
-
 Open-source technologies used:
 
 * FastAPI
@@ -446,29 +393,3 @@ Open-source technologies used:
 * Vite
 * Axios
 
-Special thanks to the open-source community for providing excellent tools and documentation.
-
----
-
-# License
-
-This project is released under the MIT License.
-
-Feel free to use and modify it for educational purposes.
-
----
-
-# Submission Checklist
-
-* ✅ FastAPI Backend
-* ✅ React Frontend
-* ✅ MySQL Database
-* ✅ Docker Containerization
-* ✅ Docker Compose
-* ✅ Recommendation System
-* ✅ REST API
-* ✅ GitHub Repository
-* ✅ Documentation
-* ✅ Swagger API Documentation
-* ✅ Modular Architecture
-* ✅ Public Repository Ready
