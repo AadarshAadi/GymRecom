@@ -5,36 +5,67 @@
 ![React](https://img.shields.io/badge/React-Frontend-61DAFB.svg)
 ![MySQL](https://img.shields.io/badge/MySQL-Database-orange.svg)
 ![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED.svg)
+
 ---
 
 # 📖 Project Overview
 
-Gymy is a **Workout Recommendation System** that generates personalized gym workout plans based on a user's profile and preferences.
+Gymy is a **Workout Routine Recommendation System** that generates personalized gym workout plans based on a user's profile and preferences.
 
 Users provide information such as:
 
-* Age
-* Workout Duration
-* Fitness Goal
-* Experience Level
-* Workout Days Per Week
-* Available Equipment
-* Injuries or Physical Limitations
+- Age
+- Workout Duration
+- Fitness Goal
+- Experience Level
+- Workout Days Per Week
+- Available Equipment
+- Injuries or Physical Limitations
 
 Based on these inputs, the application recommends an optimized workout routine using a recommendation engine backed by a MySQL database.
+
+The project demonstrates the use of modern full-stack development technologies by combining a React frontend, FastAPI backend, MySQL database, and Docker containerization into a scalable recommendation system.
+
+---
+
+# 🎯 Why I Chose This Project
+
+I chose to develop a **Workout Routine Recommendation System** because I have faced similar issue while starting my fitness journey in past.
+
+Most people going to the gym have no clue about what exercises they need to do, how long or how many sets and reps they need to do. This application is a nice gateway to explore gym plans based on one's personal restrictions such as durations and days of week.
+
+This project allowed me to build a practical recommendation system while applying concepts from full-stack development, REST API development, database management, and Docker containerization. It also provided an opportunity to integrate multiple technologies into a complete production-like application.
+
+---
+
+# ⭐ What Makes This Project Special
+
+Unlike traditional workout applications that display the same exercises for every user, Gymy generates personalized workout recommendations based on multiple user-specific parameters that actually have significance on determining a appropriate gym routine.
+
+GYMY considers:
+
+- Age
+- Workout Duration
+- Fitness Goal
+- Experience Level
+- Workout Frequency
+- Available Equipment
+- Injury Information
 
 ---
 
 # ✨ Features
 
-* Personalized workout recommendations
-* FastAPI
-* React frontend
-* MySQL database
-* Dockerized architecture
-* Docker Compose support
-* Responsive user interface
-* Input validation using Pydantic
+- Personalized workout recommendations
+- FastAPI REST API
+- React frontend
+- MySQL database
+- Dockerized architecture
+- Docker Compose support
+- Responsive user interface
+- Input validation using Pydantic
+- Automatic API documentation
+- Rule-based recommendation engine
 
 ---
 
@@ -42,27 +73,34 @@ Based on these inputs, the application recommends an optimized workout routine u
 
 ## Backend
 
-* Python
-* FastAPI
-* SQLAlchemy
-* Pydantic
-* Uvicorn
-* PyMySQL
+- Python
+- FastAPI
+- SQLAlchemy
+- Pydantic
+- Uvicorn
+- PyMySQL
 
 ## Frontend
 
-* React
-* Vite
-* Axios
-* CSS
+- React
+- Vite
+- Axios
+- CSS
 
 ## Database
 
-* MySQL
+- MySQL
 
 ## DevOps
 
-* Docker
+- Docker
+- Docker Compose
+
+## Development Tools
+
+- Visual Studio Code
+- Git
+- GitHub
 
 ---
 
@@ -74,7 +112,7 @@ Based on these inputs, the application recommends an optimized workout routine u
                       ▼
                React Frontend
                       │
-              FAST API Requests
+             REST API Requests
                       │
                       ▼
               FastAPI Backend
@@ -103,8 +141,8 @@ GymRecom/
 │   ├── src/
 │   │     ├── assets/
 │   │     ├── components/
-│   │     │        ├──F.jsx
-│   │     │        └──R.jsx
+│   │     │        ├── F.jsx
+│   │     │        └── R.jsx
 │   │     ├── App.jsx
 │   │     └── main.jsx
 │   ├── public/
@@ -122,17 +160,25 @@ GymRecom/
 
 ---
 
-# ⚙️ Installation
+# ⚙️ How To Install
 
 ## Prerequisites
 
-Install the following software before running the project:
+Install the following software:
 
-* Docker
+- Git
+- Docker Desktop (includes Docker Compose)
+
+Verify installation:
+
+```bash
+docker --version
+docker compose version
+```
 
 ---
 
-# Clone the Repository
+## Clone the Repository
 
 ```bash
 git clone https://github.com/AadarshAadi/GymRecom.git
@@ -142,12 +188,24 @@ cd GymRecom
 
 ---
 
-# Run Using Docker (Recommended)
+# 🚀 Running with Docker (Recommended)
 
-Build and start all containers:
+Build and start all services:
 
 ```bash
 docker compose up
+```
+
+To rebuild after changes:
+
+```bash
+docker compose up --build
+```
+
+Run in detached mode:
+
+```bash
+docker compose up -d
 ```
 
 Stop containers:
@@ -156,7 +214,7 @@ Stop containers:
 docker compose down
 ```
 
-Remove volumes:
+Remove containers and volumes:
 
 ```bash
 docker compose down -v
@@ -164,7 +222,7 @@ docker compose down -v
 
 ---
 
-# Application URLs
+# 🌐 Application URLs
 
 Frontend
 
@@ -172,7 +230,7 @@ Frontend
 http://localhost:5173
 ```
 
-Backend
+Backend API
 
 ```
 http://localhost:8000
@@ -192,17 +250,17 @@ http://localhost:8000/redoc
 
 ---
 
-# Running Without Docker
+# 💻 Running Without Docker
 
 ## Backend
 
-Create virtual environment
+Create a virtual environment
 
 ```bash
 python -m venv venv
 ```
 
-Activate virtual environment
+Activate it
 
 Windows
 
@@ -222,7 +280,7 @@ Install dependencies
 pip install -r requirements.txt
 ```
 
-Run FastAPI
+Run the backend
 
 ```bash
 uvicorn main:app --reload
@@ -238,7 +296,7 @@ Install dependencies
 npm install
 ```
 
-Run development server
+Run React
 
 ```bash
 npm run dev
@@ -246,103 +304,209 @@ npm run dev
 
 ---
 
-# Database Setup
+# 🗄 Database Setup
 
 The application uses MySQL.
 
-If using Docker, the database is automatically created during startup.
+When Docker Compose is executed:
 
-The initialization script creates:
+- MySQL container starts automatically.
+- Database is created automatically.
+- SQL initialization script imports the dataset.
+- Backend connects automatically.
 
-* Database
-* Required tables
-* Sample exercise data
-
----
-
-# How the Recommendation Engine Works
-
-1. User enters fitness details.
-2. Frontend validates the form.
-3. Data is sent to the FastAPI backend.
-4. Backend validates the request using Pydantic.
-5. Recommendation engine queries the MySQL database.
-6. Exercises are filtered based on user preferences.
-7. Personalized workout plan is generated.
-8. Results are returned as JSON.
-9. Frontend displays the recommended workout.
+No manual database setup is required.
 
 ---
 
-# User Inputs
+# 🚀 How To Use
 
-The recommendation engine considers factors such as:
+1. Start the application using Docker Compose.
 
-* Age
-* Workout Duration
-* Experience Level
-* Fitness Goal
-* Workout Frequency
-* Equipment Availability
-* Injury Information
+2. Open your browser.
 
-These inputs help generate recommendations that are more relevant than generic workout plans.
+```
+http://localhost:5173
+```
+
+3. Fill in the workout form.
+
+Enter:
+
+- Age
+- Workout Duration
+- Fitness Goal
+- Experience Level
+- Workout Days Per Week
+- Available Equipment
+- Injury Information
+
+4. Click the **Generate Workout** button.
+
+5. The React frontend sends your preferences to the FastAPI backend.
+
+6. The backend validates the request using Pydantic.
+
+7. The recommendation engine queries the MySQL database.
+
+8. Matching exercises are selected according to the user's preferences.
+
+9. The personalized workout plan is displayed on the screen.
+
+To test the backend directly, open:
+
+```
+http://localhost:8000/docs
+```
+
+Swagger UI allows testing every endpoint without using the frontend.
 
 ---
 
-# Validation
+# ⚙️ How the Recommendation Engine Works
 
-The backend validates all incoming requests using Pydantic.
+1. User submits workout preferences.
+2. FastAPI validates incoming data.
+3. Recommendation engine loads exercise data from MySQL.
+4. Exercises are filtered according to:
+   - Fitness Goal
+   - Experience Level
+   - Workout Duration
+   - Workout Frequency
+   - Equipment Availability
+   - Injury Information
+5. Matching exercises are grouped into a workout plan.
+6. Results are returned as JSON.
+7. React displays the workout recommendations.
+
+---
+
+# 👤 User Inputs
+
+The recommendation engine considers:
+
+- Age
+- Workout Duration
+- Experience Level
+- Fitness Goal
+- Workout Days Per Week
+- Available Equipment
+- Injury Information
+
+These inputs allow the system to generate personalized workout plans instead of displaying generic exercise lists.
+
+---
+
+# 🗄 Dataset Preparation & Preprocessing
+
+The application uses the **Gym Exercise Dataset** obtained from Kaggle.
+
+Before importing the dataset into MySQL, several preprocessing steps were performed to improve consistency and usability.
+
+### Data Cleaning
+
+- Removed duplicate records.
+- Removed incomplete or invalid entries.
+- Removed Unwanted exercises
+- Removed unnecessary columns.
+- Cleaned whitespace and null values.
+
+### Data Structuring
+
+- Organized the cleaned data into a relational MySQL table.
+- Verified data integrity before importing.
+- Created SQL initialization scripts for automatic database setup.
+
+Since this project uses a rule-based recommendation system rather than machine learning, no feature engineering or model training was required.
+
+---
+
+# ✔ Validation
+
+The backend validates all requests using Pydantic.
 
 Examples include:
 
-* Missing fields
-* Invalid values
-* Incorrect data types
-* Empty requests
+- Missing fields
+- Invalid values
+- Incorrect data types
+- Empty requests
 
-Appropriate HTTP status codes are returned when validation fails.
-
----
-
-# Docker Containers
-
-The application consists of three independent containers:
-
-## Frontend
-
-* React
-* Vite
-
-## Backend
-
-* FastAPI
-* Recommendation Engine
-
-## Database
-
-* MySQL
-
-These communicate over a Docker network managed by Docker Compose.
+Appropriate HTTP status codes are returned whenever validation fails.
 
 ---
 
-# Dataset Source
+# 🐳 Docker Architecture
 
-The Exercise dataset is based on publicly available exercise dataset by 
-Niharika Pandit from Kaggle:
-* https://www.kaggle.com/datasets/niharika41298/gym-exercise-data?resource=download
+The project consists of three independent containers.
+
+### Frontend
+
+- React
+- Vite
+
+### Backend
+
+- FastAPI
+- Recommendation Engine
+
+### Database
+
+- MySQL
+
+Docker Compose automatically creates the network and allows communication between all containers.
 
 ---
 
-# Screenshots
+# 📊 Dataset Source
 
-![Form Screenshot](Screenshots/1.png)
-![Results Screenshot](Screenshots/2.png)
-![Results Screenshot](Screenshots/3.png)
+Dataset used:
+
+**Gym Exercise Dataset**
+
+Author:
+**Niharika Pandit**
+
+Source:
+
+https://www.kaggle.com/datasets/niharika41298/gym-exercise-data
+
+The dataset was cleaned and transformed before being imported into MySQL.
+
 ---
 
-# Troubleshooting
+# 📸 Screenshots
+
+### User Input Form
+
+![Form](Screenshots/1.png)
+
+### Workout Recommendation
+
+![Recommendation](Screenshots/2.png)
+
+### API Documentation
+
+![Swagger](Screenshots/3.png)
+
+---
+
+# 🔮 Future Improvements
+
+- User authentication
+- Workout history
+- Progress tracking
+- AI-powered recommendations
+- Nutrition recommendations
+- BMI calculator
+- Calorie calculator
+- Exercise videos
+- Cloud deployment
+- Mobile application
+
+---
+
+# 🛠 Troubleshooting
 
 ## Docker won't start
 
@@ -356,13 +520,13 @@ docker compose up --build
 
 ## Port already in use
 
-Change ports inside:
+Modify the ports inside:
 
 ```
 docker-compose.yml
 ```
 
-or stop the application currently using that port.
+or stop the application using the conflicting port.
 
 ---
 
@@ -370,31 +534,39 @@ or stop the application currently using that port.
 
 Ensure:
 
-* MySQL container is running
-* Environment variables are correct
-* Docker network is created successfully
+- MySQL container is running
+- Docker network is created successfully
+- Database credentials are correct
+- Backend starts after MySQL initialization
 
 ---
 
-# Author
+# 👨‍💻 Author
 
 **Aadarsh**
 
-GitHub
+GitHub:
 
 https://github.com/AadarshAadi
 
 ---
 
-# Acknowledgements
+# 🙏 Acknowledgements
+
+This project was developed as part of a technical recruitment assessment.
 
 Open-source technologies used:
 
-* FastAPI
-* React
-* Docker
-* MySQL
-* SQLAlchemy
-* Vite
-* Axios
+- FastAPI
+- React
+- Docker
+- MySQL
+- SQLAlchemy
+- Pydantic
+- Vite
+- Axios
+
+Special thanks to the open-source community and Kaggle for providing the dataset used in this project.
+
+---
 
