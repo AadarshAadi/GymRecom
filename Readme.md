@@ -53,7 +53,14 @@ GYMY considers:
 - Injury Information
 
 The Software generates multiple workout routines and the user can select and view any of them.
+## 📚 Documentation
 
+Detailed documentation has been split into separate files for easier navigation.
+
+- 🚀 [Installation Guide](docs/install.md)
+- 📖 [Usage Guide](docs/usage.md)
+- 🏗️ [Architecture](docs/architecture.md)
+- 🔗 [API Documentation](docs/apidocument.md)
 ---
 
 # ✨ Features
@@ -104,27 +111,6 @@ The Software generates multiple workout routines and the user can select and vie
 
 ---
 
-# 🏗 Project Architecture
-
-```text
-                    User
-                      │
-                      ▼
-               React Frontend
-                      │
-              REST API Requests
-                      │
-                      ▼
-               FastAPI Backend
-                      │
-            Recommendation Engine
-                      │
-                      ▼
-               MySQL Database
-```
-
----
-
 # 📂 Project Structure
 
 ```text
@@ -165,68 +151,6 @@ GymRecom/
 
 ---
 
-# ⚙️ How To Install
-
-## Prerequisites
-
-Install the following software:
-
-- Git
-- Docker Desktop (includes Docker Compose)
-
-Verify installation:
-
-```bash
-docker --version
-docker compose version
-```
-
----
-
-## Clone the Repository
-
-```bash
-git clone https://github.com/AadarshAadi/GymRecom.git
-
-cd GymRecom
-```
-
----
-
-# 🚀 Running with Docker (Recommended)
-
-Build and start all services:
-
-```bash
-docker compose up
-```
-
-To rebuild after changes:
-
-```bash
-docker compose up --build
-```
-
-Run in detached mode:
-
-```bash
-docker compose up -d
-```
-
-Stop containers:
-
-```bash
-docker compose down
-```
-
-Remove containers and volumes:
-
-```bash
-docker compose down -v
-```
-
----
-
 # 🌐 Application URLs
 
 Frontend
@@ -240,73 +164,21 @@ Backend API
 ```
 http://localhost:8000
 ```
-
-Swagger Documentation
-
-```
-http://localhost:8000/docs
-```
-
-ReDoc Documentation
-
-```
-http://localhost:8000/redoc
-```
-
 ---
+# ⚙️ Recommendation Modes
 
-# 💻 Running Without Docker
+The recommendation engine generates multiple workout routines instead of returning a single fixed plan.
 
-## Backend
+### Beginner Friendly
+Prioritizes simple compound movements and machine-based exercises.
 
-Create a virtual environment
+### Balanced Routine
+Provides a mix of compound and isolation exercises.
 
-```bash
-python -m venv venv
-```
+### Intensive Routine
+Includes higher training volume for experienced users.
 
-Activate it
-
-Windows
-
-```bash
-venv\Scripts\activate
-```
-
-Linux/macOS
-
-```bash
-source venv/bin/activate
-```
-
-Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-Run the backend
-
-```bash
-uvicorn main:app --reload
-```
-
----
-
-## Frontend
-
-Install dependencies
-
-```bash
-npm install
-```
-
-Run React
-
-```bash
-npm run dev
-```
-
+Users can browse all generated routines and choose the one that best matches their preference.
 ---
 
 # 🗄 Database Setup
@@ -322,7 +194,24 @@ When Docker Compose is executed:
 
 No manual database setup is required.
 ---
+# ⚙️ Request Flow
 
+The React frontend never communicates directly with the MySQL database.
+
+All requests follow this path:
+
+React Frontend
+→ FastAPI Backend
+→ Recommendation Engine
+→ MySQL Database
+
+This separation ensures:
+
+- Better security
+- Validation through FastAPI
+- Easier maintenance
+- Loose coupling between frontend and database
+---
 # 🚀 How To Use
 
 1. Start the application using Docker Compose.
@@ -393,30 +282,6 @@ The recommendation engine considers:
 - Injury Information
 
 These inputs allow the system to generate personalized workout plans instead of displaying generic exercise lists.
-
----
-
-# 🗄 Dataset Preparation & Preprocessing
-
-The application uses the **Gym Exercise Dataset** obtained from Kaggle.
-
-Before importing the dataset into MySQL, several preprocessing steps were performed to improve consistency and usability.
-
-### Data Cleaning
-
-- Removed duplicate records.
-- Removed incomplete or invalid entries.
-- Removed Unwanted exercises
-- Removed unnecessary columns.
-- Cleaned whitespace and null values.
-
-### Data Structuring
-
-- Organized the cleaned data into a relational MySQL table.
-- Verified data integrity before importing.
-- Created SQL initialization scripts for automatic database setup.
-
-Since this project uses a rule-based recommendation system rather than machine learning, no feature engineering or model training was required.
 
 ---
 
@@ -502,42 +367,6 @@ The dataset was cleaned and transformed before being imported into MySQL.
 - Exercise videos
 - Cloud deployment
 - Mobile application
-
----
-
-# 🛠 Troubleshooting
-
-## Docker won't start
-
-```bash
-docker compose down
-
-docker compose up --build
-```
-
----
-
-## Port already in use
-
-Modify the ports inside:
-
-```
-docker-compose.yml
-```
-
-or stop the application using the conflicting port.
-
----
-
-## Database connection error
-
-Ensure:
-
-- MySQL container is running
-- Docker network is created successfully
-- Database credentials are correct
-- Backend starts after MySQL initialization
-
 ---
 
 # 👨‍💻 Author
@@ -568,7 +397,7 @@ Open-source technologies used:
 Special thanks to the open-source community and Kaggle for providing the dataset used in this project.
 
 ---
-# 📖 AI Usage Declaration
+# 📖 Declaration
 
 For fully transparency, I have used ChatGPT to help speed up some of the repetitive tasks in this project:
 - **Debugging MySQL bugs:** MySQL setup through docker was causing errors repeatedly, I used ChatGPT to solve those errors.
