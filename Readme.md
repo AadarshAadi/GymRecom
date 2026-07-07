@@ -572,7 +572,7 @@ Special thanks to the open-source community and Kaggle for providing the dataset
 
 For fully transparency, I have used ChatGPT to help speed up some of the repetitive tasks in this project:
 - **Debugging MySQL bugs:** MySQL setup through docker was causing errors repeatedly, I used ChatGPT to solve those errors.
-- **Syntax Generation:** Some complex syntax of workout filtering logic in the Engine.py were written by ChatGPT, the logic was given by me, the syntax code was taken and pasted in the engine.py
-- **Proofreading:** I used it to check grammar in this README and also be grammetically correct while writting DOCSTRINGS AND JSDOCS.
+- **Syntax Generation:** Some complex syntax of workout filtering logic in the Engine.py were written by ChatGPT, the logic was given by me, the syntax code was taken and pasted in the engine.py. CSS styling and Frontend Allignment was referred through ChatGPT.
+- **Proofreading:** I also used ChatGPT to check grammar in this README and also be grammetically correct while writting DOCSTRINGS AND JSDOCS.
 
 Everything else—the rules of recommendation, the pre-processing techniques, the React frontend design, and the Docker container logic—was built by me.

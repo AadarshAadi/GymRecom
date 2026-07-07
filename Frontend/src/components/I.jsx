@@ -1,3 +1,7 @@
+/**
+ * Displays 3 workout choices generated based on the user's input from the form.
+ * User can select one of the routines to view its detailed workout plan.
+ */
 function I({ routines, onSelect, onBack }) {
   if (!routines || routines.length === 0) return null;
 

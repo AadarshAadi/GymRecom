@@ -14,19 +14,6 @@ import Select from "react-select";
  *
  * On submission, the collected form data is passed to the parent component
  * through the `onSubmit` callback.
- *
- * @param {Object} props - Component props.
- * @param {(formData: {
- *   workcat: string,
- *   days: number|string,
- *   age: number|string,
- *   duration: number|string,
- *   exper: string,
- *   equipm: string[],
- *   injury: string
- * }) => void} props.onSubmit - Callback invoked when the form is submitted.
- *
- * @returns {JSX.Element} Workout preferences form.
  */
 function F({ onSubmit }) {
   const [formData, setFormData] = useState({

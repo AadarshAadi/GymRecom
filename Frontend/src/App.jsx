@@ -1,3 +1,6 @@
+/**
+* Main content area that displays either the workout form, routine choices or the specific routine plans.
+*/
 import { useState } from "react";
 import F from "./components/F";
 import R from "./components/R";
@@ -20,38 +23,14 @@ function App() {
             console.error(error);
         }
     };
-    /**
-     * Returns the user to the workout input form.
-     */
     const goBack = () => {
     setSelectedRoutine(null);
     };
-
     return (
         <div className="app-background">
-            <div
-  className={`main-card ${
-    routines.length === 0 ? "form-mode" : "results-mode"
-  }`}
->
+            <div className={`main-card ${routines.length === 0 ? "form-mode" : "results-mode"}`}>
                 <h1>GYMY</h1>
-                {routines.length === 0 ? (
-  <F onSubmit={genwork} />
-) : selectedRoutine ? (
-  <R
-    result={selectedRoutine}
-    onBack={goBack}
-  />
-) : (
-<I
-  routines={routines}
-  onSelect={setSelectedRoutine}
-  onBack={() => {
-    setRoutines([]);
-    setSelectedRoutine(null);
-  }}
-/>
-)}
+                {routines.length === 0 ? (<F onSubmit={genwork} />) : selectedRoutine ? (<R result={selectedRoutine}onBack={goBack}/>) : (<I routines={routines} onSelect={setSelectedRoutine}onBack={()=>{setRoutines([]);setSelectedRoutine(null);}}/>)}
             </div>
         </div>
     );

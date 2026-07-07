@@ -12,7 +12,6 @@ app = FastAPI(title="EngineAPI",version="1.0.0",lifespan=lifespan)
 app.add_middleware(CORSMiddleware,allow_origins=["*"],allow_methods=["*"],allow_headers=["*"],)
 @app.get("/")
 def home():
-    """Return the API status message."""
     return {
         "message": "Workout Recommendation API Running"
     }

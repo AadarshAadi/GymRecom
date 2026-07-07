@@ -5,35 +5,19 @@
 }
 :root {
     --font: "Segoe UI", sans-serif;
-
---bg-dark: linear-gradient(135deg, #030712, #111827, #0f172a);
-
---bg-main: linear-gradient(
-    135deg,
-    #1e3a8a,
-    #2563eb,
-    #4f46e5
-);
-
---bg-card: linear-gradient(
-    145deg,
-    #ffffff,
-    #f8fbff,
-    #eef4ff
-);
+    --bg-dark: linear-gradient(135deg, #030712, #111827, #0f172a);
+    --bg-main: linear-gradient(135deg,#1e3a8a,#2563eb,#4f46e5);
+    --bg-card: linear-gradient(145deg,#ffffff,#f8fbff,#eef4ff);
     --btn-bg: linear-gradient(135deg, #6366f1, #8b5cf6);
     --btn-hover: linear-gradient(135deg, #7c3aed, #4f46e5);
-
     --white: #ffffff;
     --text-dark: #111827;
     --label: #374151;
     --gray: #6b7280;
-
     --radius-lg: 36px;
     --radius-md: 24px;
     --radius-sm: 18px;
     --radius-xs: 12px;
-
     --shadow-main: 0 25px 60px rgba(0,0,0,.45);
     --shadow-card: 0 15px 40px rgba(0,0,0,.12);
     --transition: .3s ease;
@@ -70,11 +54,7 @@ body {
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(
-        circle at top right,
-        rgba(255,255,255,.15),
-        transparent 45%
-    );
+    background: radial-gradient(circle at top right,rgba(255,255,255,.15),transparent 45%);
     pointer-events: none;
 }
 h1 {

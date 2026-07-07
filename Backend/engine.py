@@ -451,7 +451,7 @@ def seda(daymusc,df,workcat,daynum,exper,equipm,injury,execount,variation=0):
         "pistol",
         "hip adduction",
         "neck bridge",
-        "judo flip"
+        "judo flip",
         "Push-Up"
     ]
     jinbb = inbo(injury)
