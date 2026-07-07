@@ -426,7 +426,7 @@ def inbo(injury):
     }
     return iirul.get(injury, [])
 
-def seda(daymusc,df,workcat,daynum,exper,equipm,injury,execount):
+def seda(daymusc,df,workcat,daynum,exper,equipm,injury,execount,variation=0):
     """ Select exercises for a workout day based on user preferences."""
     sexecs = []
     profile = gtrpo(workcat,exper)
@@ -464,7 +464,7 @@ def seda(daymusc,df,workcat,daynum,exper,equipm,injury,execount):
         goodmatch = mex[~mex["Title"].str.lower().str.contains("|".join(bbwords),na=False)]
         if len(goodmatch) == 0:
             continue
-        exeid = daynum % len(goodmatch)
+        exeid = (daynum + variation) % len(goodmatch)
         exercise = goodmatch.iloc[exeid]
         sexecs.append({"Exercise": exercise["Title"],"Muscle": muscle,"Equipment": exercise["Equipment"],"Level": exercise["Level"],"Sets": profile["sets"],"Reps": profile["rep_range"],"Rest": f'{profile["rest"]} sec'})
     exindex = 0
@@ -475,7 +475,7 @@ def seda(daymusc,df,workcat,daynum,exper,equipm,injury,execount):
         mex = mex[mex["Equipment"].isin(equipm)]
         goodmatch = mex[~mex["Title"].str.lower().str.contains("|".join(bbwords),na=False)]
         if len(goodmatch) > 0:
-            exeid = (daynum + exindex + 1) % len(goodmatch)
+            exeid = (daynum + exindex + variation + 1) % len(goodmatch)
             exercise = goodmatch.iloc[exeid]
             exename = exercise["Title"]
             ase = False
@@ -489,7 +489,7 @@ def seda(daymusc,df,workcat,daynum,exper,equipm,injury,execount):
             break
     return sexecs[:execount]
 
-def bwe(split,semuscles,df,workcat,exper,equipm,injury,execount):
+def bwe(split,semuscles,df,workcat,exper,equipm,injury,execount,variation=0):
     """ Build the complete weekly workout plan."""
     gymplan = {}
     template = wte[split]
@@ -498,7 +498,7 @@ def bwe(split,semuscles,df,workcat,exper,equipm,injury,execount):
             gymplan[f"Day {daynum}"] = "Rest"
         else:
             muscles = semuscles[day_type]
-            exercises = seda(muscles,df,workcat,daynum,exper,equipm,injury,execount)
+            exercises = seda(muscles,df,workcat,daynum,exper,equipm,injury,execount,variation)
             gymplan[f"Day {daynum} - {day_type}"] = exercises
     return gymplan
 
@@ -508,5 +508,12 @@ def genwork(workcat,days,age,duration,exper,equipm,injury):
     execount = excoun(duration,workcat,exper)
     age_note = agmsg(age)
     semuscles = mgs[split]
-    gymplan = bwe(split,semuscles,df,workcat,exper,equipm,injury,execount)
-    return {"split": split,"execount": execount,"age_note": age_note,"gymplan": gymplan}
+    plans = []
+
+    for variation in range(3):
+
+        gymplan = bwe(split,semuscles,df,workcat,exper,equipm,injury,execount,variation)
+
+        plans.append({"id": variation + 1,"split": split,"execount": execount,"age_note": age_note,"gymplan": gymplan})
+
+    return plans
