@@ -22,7 +22,7 @@ Users provide information such as:
 - Available Equipment
 - Injuries or Physical Limitations
 
-Based on these inputs, the application recommends an optimized workout routine using a recommendation engine backed by a MySQL database.
+Based on these inputs, the application recommends optimized workout routines using a recommendation engine backed by a MySQL database.
 
 The project demonstrates the use of modern full-stack development technologies by combining a React frontend, FastAPI backend, MySQL database, and Docker containerization into a scalable recommendation system.
 
@@ -34,13 +34,13 @@ I chose to develop a **Workout Routine Recommendation System** because I have fa
 
 Most people going to the gym have no clue about what exercises they need to do, how long or how many sets and reps they need to do. This application is a nice gateway to explore gym plans based on one's personal restrictions such as durations and days of week.
 
-This project allowed me to build a practical recommendation system while applying concepts from full-stack development, REST API development, database management, and Docker containerization. It also provided an opportunity to integrate multiple technologies into a complete production-like application.
+This project allowed me to build a practical recommendation system while applying concepts from full-stack development, database management and Docker containerization. It also provided an opportunity to integrate multiple technologies into a complete production-like application.
 
 ---
 
 # ⭐ What Makes This Project Special
 
-Unlike traditional workout applications that display the same exercises for every user, Gymy generates personalized workout recommendations based on multiple user-specific parameters that actually have significance on determining a appropriate gym routine.
+Unlike traditional workout applications that display the same exercises for every user, Gymy generates personalized workout routine recommendations based on multiple user-specific parameters that actually have significance on determining a appropriate gym routine.
 
 GYMY considers:
 
@@ -52,19 +52,19 @@ GYMY considers:
 - Available Equipment
 - Injury Information
 
+The Software generates multiple workout routines and the user can select and view any of them.
+
 ---
 
 # ✨ Features
 
 - Personalized workout recommendations
-- FastAPI REST API
+- FastAPI
 - React frontend
 - MySQL database
-- Dockerized architecture
 - Docker Compose support
 - Responsive user interface
 - Input validation using Pydantic
-- Automatic API documentation
 - Rule-based recommendation engine
 
 ---
@@ -112,10 +112,10 @@ GYMY considers:
                       ▼
                React Frontend
                       │
-             REST API Requests
+              REST API Requests
                       │
                       ▼
-              FastAPI Backend
+               FastAPI Backend
                       │
             Recommendation Engine
                       │
@@ -140,8 +140,13 @@ GymRecom/
 ├── Frontend/
 │   ├── src/
 │   │     ├── assets/
+│   │     ├── styles/
+│   │     │        └── app.css
+│   │     ├── services/
+│   │     │        └── api.js
 │   │     ├── components/
 │   │     │        ├── F.jsx
+│   │     │        ├── I.jsx
 │   │     │        └── R.jsx
 │   │     ├── App.jsx
 │   │     └── main.jsx
@@ -316,13 +321,11 @@ When Docker Compose is executed:
 - Backend connects automatically.
 
 No manual database setup is required.
-
 ---
 
 # 🚀 How To Use
 
 1. Start the application using Docker Compose.
-
 2. Open your browser.
 
 ```
@@ -342,16 +345,12 @@ Enter:
 - Injury Information
 
 4. Click the **Generate Workout** button.
-
 5. The React frontend sends your preferences to the FastAPI backend.
-
 6. The backend validates the request using Pydantic.
-
 7. The recommendation engine queries the MySQL database.
-
 8. Matching exercises are selected according to the user's preferences.
-
-9. The personalized workout plan is displayed on the screen.
+9. The personalized workout routine plans are displayed on the screen.
+10. Choose from one of the displayed routines, you can see all the routines one by one in any order.
 
 To test the backend directly, open:
 
@@ -377,7 +376,7 @@ Swagger UI allows testing every endpoint without using the frontend.
    - Injury Information
 5. Matching exercises are grouped into a workout plan.
 6. Results are returned as JSON.
-7. React displays the workout recommendations.
+7. React displays the workout routines.
 
 ---
 
@@ -481,11 +480,14 @@ The dataset was cleaned and transformed before being imported into MySQL.
 
 ![Form](Screenshots/1.png)
 
+### Routine Selection
+
+![Routine Selection](Screenshots/4.png)
+
 ### Workout Recommendation
 
 ![Recommendation](Screenshots/2.png)
 
-### API Documentation
 
 ![Swagger](Screenshots/3.png)
 
@@ -496,10 +498,7 @@ The dataset was cleaned and transformed before being imported into MySQL.
 - User authentication
 - Workout history
 - Progress tracking
-- AI-powered recommendations
 - Nutrition recommendations
-- BMI calculator
-- Calorie calculator
 - Exercise videos
 - Cloud deployment
 - Mobile application
@@ -569,4 +568,11 @@ Open-source technologies used:
 Special thanks to the open-source community and Kaggle for providing the dataset used in this project.
 
 ---
+# 📖 AI Usage Declaration
 
+For fully transparency, I have used ChatGPT to help speed up some of the repetitive tasks in this project:
+- **Debugging MySQL bugs:** MySQL setup through docker was causing errors repeatedly, I used ChatGPT to solve those errors.
+- **Syntax Generation:** Some complex syntax of workout filtering logic in the Engine.py were written by ChatGPT, the logic was given by me, the syntax code was taken and pasted in the engine.py
+- **Proofreading:** I used it to check grammar in this README and also be grammetically correct while writting DOCSTRINGS AND JSDOCS.
+
+Everything else—the rules of recommendation, the pre-processing techniques, the React frontend design, and the Docker container logic—was built by me.
