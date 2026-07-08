@@ -19,7 +19,6 @@ def datalload():
     raise RuntimeError("Could not connect to MySQL.")
 
 wosplit = {
-    """Workout Split"""
     "Hypertrophy": {
         2: "Full Body",
         3: "Push Pull Legs",
@@ -37,7 +36,6 @@ wosplit = {
 }
 
 trpro = {
-    """Training Profiles"""
     "Hypertrophy": {
         "Beginner": {
             "sets": 3,
@@ -112,7 +110,6 @@ def agmsg(age):
         return "Use lower volume, more recovery, and mobility work."
     
 mgs = {
-    """ Muscle groups assigned for each workout split."""
     "Full Body": {
         "Full Body Day": [
             "Chest",
@@ -279,7 +276,6 @@ mgs = {
 }
 
 wte = {
-    """ Weekly workout schedule templates."""
     "Full Body": [
         "Full Body Day",
         "Rest",

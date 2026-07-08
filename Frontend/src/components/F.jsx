@@ -33,7 +33,11 @@ function F({ onSubmit }) {
   ];
   const hanchang = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+
+    setFormData({
+      ...formData,
+      [name]: name === "days" ? Number(value) : value,
+    });
   };
   const submitfo = (e) => {
     e.preventDefault();
@@ -50,9 +54,15 @@ function F({ onSubmit }) {
           <option>Hypertrophy</option>
         </select>
         <label>Days Per Week</label>
-        <input type="number" name="days" min="2" max="6" value={formData.days} onChange={hanchang} />
+        <select name="days" value={formData.days} onChange={hanchang}>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
+          <option value={4}>4</option>
+          <option value={5}>5</option>
+          <option value={6}>6</option>
+        </select>
         <label>Workout Duration (minutes)</label>
-        <input type="number" name="duration" value={formData.duration} onChange={hanchang} />
+        <input type="number" name="duration" min="30" max="240" value={formData.duration} onChange={hanchang} />
         <label>Age</label>
         <input type="number" name="age" value={formData.age} onChange={hanchang} />
         <label>Experience</label>
