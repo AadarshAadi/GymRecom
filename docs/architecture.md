@@ -1,6 +1,6 @@
 # System Architecture
 
-This document describes the overall architecture of Gymy, including the software components, data flow, dataset preprocessing, and the rule-based recommendation engine.
+This document describes the overall architecture of GYMY, including the software components, data flow, dataset preprocessing, and the rule-based recommendation engine.
 
 ---
 
@@ -78,7 +78,7 @@ The backend loads this dataset into memory using Pandas during application start
 
 # Recommendation Engine Architecture
 
-Unlike machine learning-based recommender systems, Gymy uses a **rule-based recommendation engine**.
+Unlike machine learning-based recommender systems, GYMY uses a **rule-based recommendation engine**.
 
 Instead of predicting workouts using a trained model, the engine applies predefined fitness rules to generate personalized workout plans.
 

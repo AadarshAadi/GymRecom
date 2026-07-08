@@ -1,6 +1,6 @@
 # Installation Guide
 
-This guide explains how to install and run the Gymy application.
+This guide explains how to install and run the GYMY application.
 
 ---
 

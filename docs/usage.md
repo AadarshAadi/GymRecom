@@ -1,6 +1,6 @@
 # Usage Guide
 
-This guide explains how to use Gymy to generate personalized workout routines.
+This guide explains how to use GYMY to generate personalized workout routines.
 
 ---
 
@@ -18,7 +18,7 @@ http://localhost:5173
 
 # Generating a Workout Plan
 
-1. Open the Gymy application.
+1. Open the GYMY application.
 2. Fill in the workout preference form.
 3. Click the **Generate Workout** button.
 4. Wait for the recommendation engine to process your request.
@@ -71,7 +71,7 @@ The recommendation engine considers several factors while generating workout pla
 - Injury Information
 - Age
 
-By combining these inputs, Gymy generates workout routines tailored to each user's requirements instead of displaying generic exercise lists.
+By combining these inputs, GYMY generates workout routines tailored to each user's requirements instead of displaying generic exercise lists.
 
 ---
 

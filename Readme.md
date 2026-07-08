@@ -1,4 +1,4 @@
-# 🏋️ Gymy
+# 🏋️ GYMY
 
 ![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green.svg)
@@ -10,7 +10,7 @@
 
 # 📖 Project Overview
 
-Gymy is a **Workout Routine Recommendation System** that generates personalized gym workout plans based on a user's profile and preferences.
+GYMY is a **Workout Routine Recommendation System** that generates personalized gym workout plans based on a user's profile and preferences.
 
 Users provide information such as:
 
@@ -40,7 +40,7 @@ This project allowed me to build a practical recommendation system while applyin
 
 # ⭐ What Makes This Project Special
 
-Unlike traditional workout applications that display the same exercises for every user, Gymy generates personalized workout routine recommendations based on multiple user-specific parameters that actually have significance on determining a appropriate gym routine.
+Unlike traditional workout applications that display the same exercises for every user, GYMY generates personalized workout routine recommendations based on multiple user-specific parameters that actually have significance on determining a appropriate gym routine.
 
 GYMY considers:
 
