@@ -1,4 +1,6 @@
-# 🏋️ GYMY
+<p align="center">
+  <img src="Screenshots/5.png" alt="Image Description">
+</p>
 
 ![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green.svg)
@@ -7,7 +9,6 @@
 ![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED.svg)
 
 ---
-
 # 📖 Project Overview
 
 GYMY is a **Workout Routine Recommendation System** that generates personalized gym workout plans based on a user's profile and preferences.
@@ -30,7 +31,7 @@ The project demonstrates the use of modern full-stack development technologies b
 
 # 🎯 Why I Chose This Project
 
-I chose to develop a **Workout Routine Recommendation System** because I have faced similar issue while starting my fitness journey in past.
+I chose to develop GYMY because I have faced similar issue while starting my fitness journey in past.
 
 Most people going to the gym have no clue about what exercises they need to do, how long or how many sets and reps they need to do. This application is a nice gateway to explore gym plans based on one's personal restrictions such as durations and days of week.
 
@@ -40,7 +41,7 @@ This project allowed me to build a practical recommendation system while applyin
 
 # ⭐ What Makes This Project Special
 
-Unlike traditional workout applications that display the same exercises for every user, GYMY generates personalized workout routine recommendations based on multiple user-specific parameters that actually have significance on determining a appropriate gym routine.
+Unlike traditional workout applications that display the same exercises for every user, GYMY generates personalized workout routine recommendations based on multiple user-specific parameters that actually have significance on determining an appropriate gym routine.
 
 GYMY considers:
 
@@ -140,7 +141,11 @@ GymRecom/
 │   ├── Dockerfile
 │   ├── package.json
 │   └── vite.config.js
-│
+├── docs/
+│   ├── architecture.md
+│   ├── install.md
+│   ├── usage.md
+│   └── apidocument.md
 ├── mysql-init/
 │   └── cleaneddataset.sql
 │
@@ -180,77 +185,6 @@ Includes higher training volume for experienced users.
 
 Users can browse all generated routines and choose the one that best matches their preference.
 ---
-
-# 🗄 Database Setup
-
-The application uses MySQL.
-
-When Docker Compose is executed:
-
-- MySQL container starts automatically.
-- Database is created automatically.
-- SQL initialization script imports the dataset.
-- Backend connects automatically.
-
-No manual database setup is required.
----
-# ⚙️ Request Flow
-
-The React frontend never communicates directly with the MySQL database.
-
-All requests follow this path:
-
-React Frontend
-→ FastAPI Backend
-→ Recommendation Engine
-→ MySQL Database
-
-This separation ensures:
-
-- Better security
-- Validation through FastAPI
-- Easier maintenance
-- Loose coupling between frontend and database
----
-# 🚀 How To Use
-
-1. Start the application using Docker Compose.
-2. Open your browser.
-
-```
-http://localhost:5173
-```
-
-3. Fill in the workout form.
-
-Enter:
-
-- Age
-- Workout Duration
-- Fitness Goal
-- Experience Level
-- Workout Days Per Week
-- Available Equipment
-- Injury Information
-
-4. Click the **Generate Workout** button.
-5. The React frontend sends your preferences to the FastAPI backend.
-6. The backend validates the request using Pydantic.
-7. The recommendation engine queries the MySQL database.
-8. Matching exercises are selected according to the user's preferences.
-9. The personalized workout routine plans are displayed on the screen.
-10. Choose from one of the displayed routines, you can see all the routines one by one in any order.
-
-To test the backend directly, open:
-
-```
-http://localhost:8000/docs
-```
-
-Swagger UI allows testing every endpoint without using the frontend.
-
----
-
 # ⚙️ How the Recommendation Engine Works
 
 1. User submits workout preferences.
@@ -266,37 +200,6 @@ Swagger UI allows testing every endpoint without using the frontend.
 5. Matching exercises are grouped into a workout plan.
 6. Results are returned as JSON.
 7. React displays the workout routines.
-
----
-
-# 👤 User Inputs
-
-The recommendation engine considers:
-
-- Age
-- Workout Duration
-- Experience Level
-- Fitness Goal
-- Workout Days Per Week
-- Available Equipment
-- Injury Information
-
-These inputs allow the system to generate personalized workout plans instead of displaying generic exercise lists.
-
----
-
-# ✔ Validation
-
-The backend validates all requests using Pydantic.
-
-Examples include:
-
-- Missing fields
-- Invalid values
-- Incorrect data types
-- Empty requests
-
-Appropriate HTTP status codes are returned whenever validation fails.
 
 ---
 
@@ -336,7 +239,7 @@ Source:
 https://www.kaggle.com/datasets/niharika41298/gym-exercise-data
 
 The dataset was cleaned and transformed before being imported into MySQL.
-
+Refer [Architecture](docs/architecture.md#L226) for more info.
 ---
 
 # 📸 Screenshots
@@ -351,16 +254,16 @@ The dataset was cleaned and transformed before being imported into MySQL.
 
 ### Workout Recommendation
 
-![Recommendation](Screenshots/2.png)
+![Recommendation part 1](Screenshots/2.png)
 
 
-![Swagger](Screenshots/3.png)
+![Recommendation part 2](Screenshots/3.png)
 
 ---
 
 # 🔮 Future Improvements
 
-- User authentication
+- User authentication and Profile
 - Workout history
 - Progress tracking
 - Nutrition recommendations
@@ -381,8 +284,6 @@ https://github.com/AadarshAadi
 
 # 🙏 Acknowledgements
 
-This project was developed as part of a technical recruitment assessment.
-
 Open-source technologies used:
 
 - FastAPI
@@ -400,8 +301,8 @@ Special thanks to the open-source community and Kaggle for providing the dataset
 # 📖 Declaration
 
 For fully transparency, I have used ChatGPT to help speed up some of the repetitive tasks in this project:
-- **Debugging MySQL bugs:** MySQL setup through docker was causing errors repeatedly, I used ChatGPT to solve those errors.
-- **Syntax Generation:** Some complex syntax of workout filtering logic in the Engine.py were written by ChatGPT, the logic was given by me, the syntax code was taken and pasted in the engine.py. CSS styling and Frontend Allignment was referred through ChatGPT.
-- **Proofreading:** I also used ChatGPT to check grammar in this README and also be grammetically correct while writting DOCSTRINGS AND JSDOCS.
+- **MySQL bugs:** MySQL setup through docker was causing errors repeatedly, I used ChatGPT to solve those errors.
+- **Syntax Generation:** Some complex syntax of workout filtering logic in the Engine.py were written by ChatGPT, the logic was given by me, the syntax code was taken and pasted in the engine.py. CSS styling and Frontend allignment were referred from ChatGPT.
+- **Proofreading:** I also used ChatGPT to check grammar in this README and other technical docs and also be grammetically correct while writting DOCSTRINGS AND JSDOCS.
 
-Everything else—the rules of recommendation, the pre-processing techniques, the React frontend design, and the Docker container logic—was built by me.
+Aside from that, the rules of recommendation, the pre-processing techniques, the React frontend design and the Docker container logic were built by me.

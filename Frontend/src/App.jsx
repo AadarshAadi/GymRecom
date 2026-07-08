@@ -6,7 +6,7 @@ import F from "./components/F";
 import R from "./components/R";
 import I from "./components/I";
 import api from "./services/api";
-import "./styles/App.css";
+import "./styles/app.css";
 function App() {
     const [routines, setRoutines] = useState([]);
     const [selectedRoutine, setSelectedRoutine] = useState(null);
@@ -35,5 +35,4 @@ function App() {
         </div>
     );
 }
-
 export default App;

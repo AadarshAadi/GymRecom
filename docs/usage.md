@@ -6,7 +6,7 @@ This guide explains how to use GYMY to generate personalized workout routines.
 
 # Getting Started
 
-Before using the application, ensure all services are running. If you haven't installed the project yet, follow the [Installation Guide](install.md).
+Before using the application, ensure all services are running. If you haven't installed the project yet, follow the [Installation Guide](docs/install.md).
 
 Open your browser and navigate to:
 

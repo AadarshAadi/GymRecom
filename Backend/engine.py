@@ -509,11 +509,7 @@ def genwork(workcat,days,age,duration,exper,equipm,injury):
     age_note = agmsg(age)
     semuscles = mgs[split]
     plans = []
-
     for variation in range(3):
-
         gymplan = bwe(split,semuscles,df,workcat,exper,equipm,injury,execount,variation)
-
         plans.append({"id": variation + 1,"split": split,"execount": execount,"age_note": age_note,"gymplan": gymplan})
-
     return plans

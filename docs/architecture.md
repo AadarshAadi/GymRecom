@@ -1,7 +1,7 @@
 # System Architecture
 
 This document describes the overall architecture of GYMY, including the software components, data flow, dataset preprocessing, and the rule-based recommendation engine.
-
+GYMY uses a rule-based recommendation engine rather than a machine learning model. Recommendations are generated using predefined training heuristics and exercise filtering rules.
 ---
 
 # Overall Architecture
@@ -85,28 +85,28 @@ Instead of predicting workouts using a trained model, the engine applies predefi
 The workflow is shown below.
 
 ```text
-             User Preferences
+            User Preferences
                     │
                     ▼
-           Input Validation
+            Input Validation
                     │
                     ▼
-       Determine Workout Category
+        Determine Workout Category
                     │
                     ▼
-         Select Workout Split
+          Select Workout Split
                     │
                     ▼
-      Load Training Profile Rules
+       Load Training Profile Rules
                     │
                     ▼
      Calculate Exercises per Session
                     │
                     ▼
-    Apply Injury & Equipment Filters
+     Apply Injury & Equipment Filters
                     │
                     ▼
-       Select Suitable Exercises
+        Select Suitable Exercises
                     │
                     ▼
        Generate Weekly Workout Plan

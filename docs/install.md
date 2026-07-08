@@ -26,7 +26,6 @@ Clone the project from GitHub:
 
 ```bash
 git clone https://github.com/AadarshAadi/GymRecom.git
-
 cd GymRecom
 ```
 

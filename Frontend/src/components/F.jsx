@@ -44,22 +44,17 @@ function F({ onSubmit }) {
     <div className="form-card">
       <form onSubmit={submitfo}>
         <h2>Workout Preferences</h2>
-
         <label>Workout Goal</label>
         <select name="workcat" value={formData.workcat} onChange={hanchang}>
           <option>Strength</option>
           <option>Hypertrophy</option>
         </select>
-
         <label>Days Per Week</label>
         <input type="number" name="days" min="2" max="6" value={formData.days} onChange={hanchang} />
-
         <label>Workout Duration (minutes)</label>
         <input type="number" name="duration" value={formData.duration} onChange={hanchang} />
-
         <label>Age</label>
         <input type="number" name="age" value={formData.age} onChange={hanchang} />
-
         <label>Experience</label>
         <select name="exper" value={formData.exper} onChange={hanchang}>
           <option>Beginner</option>
@@ -67,7 +62,6 @@ function F({ onSubmit }) {
           <option>Advanced</option>
         </select>
         <label>Available Equipment</label>
-
         <Select
           isMulti
           options={equipmentOptions}
@@ -118,7 +112,6 @@ function F({ onSubmit }) {
             }),
           }}
         />
-
         <label>Injury</label>
         <select name="injury" value={formData.injury} onChange={hanchang}>
           <option>None</option>
@@ -126,7 +119,6 @@ function F({ onSubmit }) {
           <option>Lower Back Pain</option>
           <option>Shoulder Pain</option>
         </select>
-
         <button type="submit">Generate Workout</button>
       </form>
     </div>

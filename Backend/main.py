@@ -13,7 +13,7 @@ app.add_middleware(CORSMiddleware,allow_origins=["*"],allow_methods=["*"],allow_
 @app.get("/")
 def home():
     return {
-        "message": "Workout Recommendation API Running"
+        "message": "GYMY API Running"
     }
 @app.post("/recommend")
 def recommend(request: WR):
