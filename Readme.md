@@ -28,36 +28,31 @@ Based on these inputs, the application recommends optimized workout routines usi
 The project demonstrates the use of modern full-stack development technologies by combining a React frontend, FastAPI backend, MySQL database, and Docker containerization into a scalable recommendation system.
 
 ---
+# 📑 Index
 
-# 🎯 Why I Chose This Project
 
-I chose to develop GYMY because I have faced similar issue while starting my fitness journey in past.
-
-Most people going to the gym have no clue about what exercises they need to do, how long or how many sets and reps they need to do. This application is a nice gateway to explore gym plans based on one's personal restrictions such as durations and days of week.
-
-This project allowed me to build a practical recommendation system while applying concepts from full-stack development, database management and Docker containerization. It also provided an opportunity to integrate multiple technologies into a complete production-like application.
-
+- [📚 Documentation](#-documentation)
+- [✨ Features](#-features)
+- [🛠 Technology Stack](#-technology-stack)
+- [📂 Project Structure](#-project-structure)
+- [⚙️ How To Install](#️-how-to-install)
+- [🚀 How To Use](#-how-to-use)
+- [🌐 Application URLs](#-application-urls)
+- [⚙️ How the Recommendation Engine Works](#️-how-the-recommendation-engine-works)
+- [🐳 Docker Architecture](#-docker-architecture)
+- [📊 Dataset Source](#-dataset-source)
+- [📸 Screenshots](#-screenshots)
+- [🔮 Future Improvements](#-future-improvements)
+- [👨‍💻 Author](#-author)
+- [🙏 Acknowledgements](#-acknowledgements)
+- [📖 Declaration](#-declaration)
 ---
 
-# ⭐ What Makes This Project Special
-
-Unlike traditional workout applications that display the same exercises for every user, GYMY generates personalized workout routine recommendations based on multiple user-specific parameters that actually have significance on determining an appropriate gym routine.
-
-GYMY considers:
-
-- Age
-- Workout Duration
-- Fitness Goal
-- Experience Level
-- Workout Frequency
-- Available Equipment
-- Injury Information
-
-The Software generates multiple workout routines and the user can select and view any of them.
-## 📚 Documentation
+# 📚 Documentation
 
 Detailed documentation has been split into separate files for easier navigation.
 
+- 🙏 [Motivation](docs/motivation.md)
 - 🚀 [Installation Guide](docs/install.md)
 - 📖 [Usage Guide](docs/usage.md)
 - 🏗️ [Architecture](docs/architecture.md)
@@ -155,7 +150,28 @@ GymRecom/
 ```
 
 ---
+# ⚙️ How To Install
 
+Full setup instructions, prerequisites, and troubleshooting for getting the project running are in [Installation Guide](docs/install.md).
+
+In short.
+
+```bash
+git clone https://github.com/AadarshAadi/GymRecom.git
+cd GymRecom
+docker compose up --build
+```
+
+Then open http://localhost:5173.
+
+---
+# 🚀 How To Use
+
+A full walkthrough of the interface, what each field does, and a worked example of a recommendation request is in [How to Use](docs/usage.md).
+
+In short, enter your preferences, select any of the generated routines and view the entire plan or browse other plans on will.
+
+---
 # 🌐 Application URLs
 
 Frontend
@@ -169,21 +185,6 @@ Backend API
 ```
 http://localhost:8000
 ```
----
-# ⚙️ Recommendation Modes
-
-The recommendation engine generates multiple workout routines instead of returning a single fixed plan.
-
-### Beginner Friendly
-Prioritizes simple compound movements and machine-based exercises.
-
-### Balanced Routine
-Provides a mix of compound and isolation exercises.
-
-### Intensive Routine
-Includes higher training volume for experienced users.
-
-Users can browse all generated routines and choose the one that best matches their preference.
 ---
 # ⚙️ How the Recommendation Engine Works
 
@@ -239,7 +240,7 @@ Source:
 https://www.kaggle.com/datasets/niharika41298/gym-exercise-data
 
 The dataset was cleaned and transformed before being imported into MySQL.
-Refer [Architecture](docs/architecture.md#L226) for more info.
+Refer [Architecture](docs/architecture.md) for more info.
 ---
 
 # 📸 Screenshots
